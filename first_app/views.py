@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 import random
 from django.shortcuts import render
-from first_app.models import table2
 from first_app.models import data
 from . import forms
 from django.http import HttpResponse, HttpResponseRedirect
@@ -29,7 +28,7 @@ def index(request):
                 a.key = keys
                 a.text = z
                 a.save()
-                url_re = "https://harshsingh586.pythonanywhere.com/"+keys
+                url_re = "http://127.0.0.1:8000/"+keys
                 return HttpResponseRedirect(url_re)
     dic = {'form':form1}
 
@@ -43,7 +42,7 @@ def redirect1(request, genre):
     else:
         b = data.objects.get(key=genre)
         show = str(b.text)
-        link = "harshsingh586.pythonanywhere.com/"+genre
+        link = "http://127.0.0.1:8000/"+genre
         link = str(link)
         dic = {'data' : show, 'link' : link}
         return render(request, "pastebinshow.html", context = dic )
